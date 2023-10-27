@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Trang Đăng ký</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+      .container {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      label {
+        display: block;
+        margin-bottom: 10px;
+      }
+      input[type="text"],
+      input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+      }
+      select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+      }
+      .checkbox-group {
+        margin-bottom: 10px;
+      }
+      button {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Đăng ký</h2>
+      <form id="signup-form">
+        <label for="username">Tên người dùng:</label>
+        <input type="text" id="username" name="username" required />
+
+        <label for="password">Mật khẩu:</label>
+        <input type="password" id="password" name="password" required />
+
+        <label for="birthday">Ngày tháng năm sinh:</label>
+        <input type="date" id="birthday" name="birthday" required />
+
+        <label for="interests">Sở thích:</label>
+        <select id="interests" name="interests" multiple>
+          <option value="sport">Thể thao</option>
+          <option value="music">Âm nhạc</option>
+          <option value="travel">Du lịch</option>
+          <option value="food">Ẩm thực</option>
+          <option value="books">Sách</option>
+        </select>
+
+        <div class="checkbox-group">
+          <label>Chọn giới tính:</label>
+          <input type="radio" name="gender" value="male" /> Nam
+          <input type="radio" name="gender" value="female" /> Nữ
+        </div>
+
+        <button type="submit">Đăng ký</button>
+      </form>
+    </div>
+
+    <script>
+      document
+        .getElementById("signup-form")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const username = document.getElementById("username").value;
+          const password = document.getElementById("password").value;
+          const birthday = document.getElementById("birthday").value;
+          const interests = Array.from(
+            document.getElementById("interests").selectedOptions
+          ).map((option) => option.value);
+          const gender = document.querySelector('input[name="gender"]:checked');
+
+          if (!gender) {
+            alert("Vui lòng chọn giới tính.");
+            return;
+          }
+
+          const formData = {
+            username,
+            password,
+            birthday,
+            interests,
+            gender: gender.value,
+          };
+
+          console.log("Dữ liệu đã gửi:", formData);
+
+          // Thực hiện các hành động lưu dữ liệu ở đây, chẳng hạn như gửi lên máy chủ.
+
+          // Sau khi đăng ký thành công, bạn có thể chuyển hướng người dùng đến trang khác.
+        });
+    </script>
+  </body>
+</html>
